@@ -56,7 +56,7 @@ class MultiRegionClient implements AwsClientInterface
             ],
             'partition' => [
                 'type'    => 'config',
-                'valid'   => ['string', PartitionInterface::class],
+                'valid'   => ['string', 'callable', PartitionInterface::class],
                 'doc'     => 'AWS partition to connect to. Valid partitions'
                     . ' include "aws," "aws-cn," and "aws-us-gov." Used to'
                     . ' restrict the scope of the mapRegions method.',

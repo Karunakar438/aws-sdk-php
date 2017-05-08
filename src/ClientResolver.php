@@ -64,7 +64,7 @@ class ClientResolver
         ],
         'region' => [
             'type'     => 'value',
-            'valid'    => ['string'],
+            'valid'    => ['string', 'callable'],
             'required' => [__CLASS__, '_missing_region'],
             'doc'      => 'Region to connect to. See http://docs.aws.amazon.com/general/latest/gr/rande.html for a list of available regions.',
         ],
@@ -253,9 +253,8 @@ class ClientResolver
                     // Merge defaults in when not present.
                     if (is_callable($a['default'])
                         && (
-                            in_array('callable', $a['valid'])
-                            || $a['type'] == 'config'
-                            || is_object($a['default'])
+                            is_array($a['default'])
+                            || in_array('callable', $a['valid'])
                         )
                     ) {
                         $args[$key] = $a['default']($args);

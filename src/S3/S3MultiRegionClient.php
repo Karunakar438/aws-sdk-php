@@ -179,7 +179,7 @@ class S3MultiRegionClient extends BaseClient implements S3ClientInterface
         return $args + [
             'bucket_region_cache' => [
                 'type' => 'config',
-                'valid' => [CacheInterface::class],
+                'valid' => [CacheInterface::class, 'callable'],
                 'doc' => 'Cache of regions in which given buckets are located.',
                 'default' => function () { return new LruArrayCache; },
             ],
